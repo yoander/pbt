@@ -71,7 +71,7 @@ if [[ ! -f ./$php_file ]]; then
 	curl -# -L --metalink file://$(pwd)/../metalinks/${php_file}.metalink || exit 2
     else # Fallback download method
 	while read mirror; do
-	   echo $mirror|tr %s $mirror 
+	   printf $mirror $php_file 
 	done < ./../mirrors.txt
 	    	
     fi
