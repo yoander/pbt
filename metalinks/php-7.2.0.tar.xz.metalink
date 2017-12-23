@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metalink xmlns="urn:ietf:params:xml:ns:metalink">
+  <generator>pbt Metalink Generator</generator>
+  <file name="php-7.2.0.tar.xz">
+    <publisher>
+      <name>pbt</name>
+      <url>https://pbt.github.io/</url>
+    </publisher>
+    <description>PHP source tar|gzip|xz</description>
+    <hash type="sha-256">87572a6b924670a5d4aac276aaa4a94321936283df391d702c845ffc112db095</hash>
+    <url type="http" location="am" priority="90">http://am1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="au" priority="90">http://au1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="au" priority="90">http://au2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="at" priority="90">http://at1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="at" priority="90">http://at2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="be" priority="90">http://be2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ba" priority="90">http://ba1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="br" priority="90">http://br2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ca" priority="40">http://ca1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ca" priority="40">http://ca2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ca" priority="40">http://ca3.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="cn" priority="90">http://cn2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="cz" priority="90">http://cz1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="cz" priority="90">http://cz2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="dk" priority="90">http://dk2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ee" priority="90">http://ee1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="fi" priority="90">http://fi2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="fr" priority="90">http://fr2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="de" priority="90">http://de2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="hk" priority="90">http://hk1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="hk" priority="90">http://hk2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="in" priority="90">http://in1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="in" priority="90">http://in2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="in" priority="90">http://in3.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="id" priority="90">http://id1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ir" priority="90">http://ir1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ir" priority="90">http://ir1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ie" priority="90">http://ie1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ie" priority="90">http://ie2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="il" priority="90">http://il1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="it" priority="90">http://it2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="my" priority="90">http://my2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="mx" priority="30">http://mx1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="mx" priority="30">http://mx2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="nl" priority="90">http://nl1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="pa" priority="20">http://pa1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="pl" priority="90">http://pl1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="md" priority="90">http://md1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ro" priority="90">http://ro1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="sg" priority="90">http://sg2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="si" priority="90">http://si1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="es" priority="90">http://es1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="se" priority="90">http://se2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="ch" priority="90">http://ch1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="tw" priority="90">http://tw2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="th" priority="90">http://th1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="tr" priority="90">http://tr1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="tr" priority="90">http://tr2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="uk" priority="90">http://uk3.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="tz" priority="90">http://tz1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="us" priority="10">http://php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="us" priority="10">http://us1.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+    <url type="http" location="us" priority="10">http://us2.php.net/get/php-7.2.0.tar.xz/from/this/mirror</url>
+  </file>
+</metalink>
