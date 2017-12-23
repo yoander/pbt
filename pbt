@@ -70,12 +70,13 @@ if [[ ! -f ./$php_file ]]; then
     if [[ `curl -V|grep -i 'features:.*\bmetalink\b'` ]]; then # Test for metalink support
 	curl -# -L --metalink file://$(pwd)/../metalinks/${php_file}.metalink || exit 2
     else # Fallback download method
-	while read mirror; do
-	   printf $mirror $php_file 
+        download=false
+        while read mirror && [[ $download == false ]]; do
+	   curl -# -L `printf $mirror $php_file` -o $php_file
+	   download=$?	 
 	done < ./../mirrors.txt
-	    	
+	[[ ! $? ]] && exit    	
     fi
-    exit
 fi
 #
 # Uncompressing: Uncompress only if the php-${php_version} dir does not exist to uncompress again delete the dir
