@@ -56,9 +56,10 @@ php_file=php-${php_version}.${compression}
 #
 [[ ! -d ./metalinks ]] && mkdir metalinks
 #
-# Load metalink template
+# If metalink does no exits generate it based on metalink template
 #
-source ./template.metalink $php_file $(cat ./signatures/$php_file.sig) > ./metalinks/$php_file.metalink
+metalink_file=./metalinks/${php_file}.metalink 
+[[ ! -f $metalink_file ]] && source ./template.metalink $php_file $(cat ./signatures/$php_file.sig) > $metalink_file
 #
 # Create downloas dir
 # 
@@ -94,6 +95,6 @@ fi
 #
 # Installing dependencies
 #
-depfile=./../os/${os_id}.dep
+depfile=./../os/${os_id}
 
 [[ -f $depfile ]] && source $depfile $userdo
