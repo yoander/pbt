@@ -27,7 +27,7 @@
 #
 main_conf=
 userdo=
-
+#
 # Testing if you have root access!
 if [[ 'root' == whoami ]]; then
     is_root=true
@@ -47,46 +47,50 @@ if [[ $is_root == false ]]; then
     echo Bye!
     exit 1
 fi  
-
+#
+# Load configuration
 source ./pbt.ini
 php_file=php-${php_version}.${compression}
-
 #
 # create metalinks dir if no exists
-#
 [[ ! -d ./metalinks ]] && mkdir metalinks
 #
 # If metalink does no exits generate it based on metalink template
-#
 metalink_file=./metalinks/${php_file}.metalink 
 [[ ! -f $metalink_file ]] && source ./template.metalink $php_file $(cat ./signatures/$php_file.sig) > $metalink_file
 #
 # Create downloas dir
-# 
 [[ ! -d ./downloads ]] && mkdir downloads
 #
 # Move to downloads dir
-#
 cd ./downloads
 #
 # Download PHP, if the file is not already downloaded, if the file was downloaded partially then delete it
-#
-[[ ! -f ./$php_file ]] && { curl -# -L --metalink file://$(pwd)/../metalinks/${php_file}.metalink || exit 2; }
+if [[ ! -f ./$php_file ]]; then
+    if [[ `curl -V|grep -i 'features:.*\bmetalink\b'` ]]; then # Test for metalink support
+	curl -# -L --metalink file://$(pwd)/../metalinks/${php_file}.metalink || exit 2
+    else # Fallback download method
+	while read mirror; do
+	   echo $mirror|tr %s $mirror 
+	done < ./../mirrors.txt
+	    	
+    fi
+    exit
+fi
 #
 # Uncompressing: Uncompress only if the php-${php_version} dir does not exist to uncompress again delete the dir
-#
 if [[ ! -d ./php-${php_version} ]]; then
-	if [[ 'tar.xz' == $compression ]]; then
-		tar xvJf $php_file
-	elif [[ 'tar.bz2' == $compression ]]; then 
-		tar xvjf $php_file
-	elif [[ 'tar.gz' == $compression ]]; then
-		tar xvzf $php_file
-	else
-		echo "Uknown file ($php_file) compression"
-		echo Bye!
-		exit 2
-	fi
+    if [[ 'tar.xz' == $compression ]]; then
+       tar xvJf $php_file
+    elif [[ 'tar.bz2' == $compression ]]; then 
+       tar xvjf $php_file
+    elif [[ 'tar.gz' == $compression ]]; then
+       tar xvzf $php_file
+    else
+       echo "Uknown file ($php_file) compression"
+       echo Bye!
+       exit 2
+    fi
 fi
 #
 # Load OS details
