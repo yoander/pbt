@@ -77,7 +77,7 @@ if [[ ! -f ./$php_file ]]; then
         while read mirror && [[ $download == false ]]; do
             curl -# -L `printf $mirror $php_file` -o $php_file
             if [[ "`sha256sum ./$php_file|awk 'print $1'`" != "$sha25" ]]; then
-                echo Corrupted file ($php_file)!
+                echo "Corrupted file: $php_file"
                 exit 3
             fi
         download=$?
