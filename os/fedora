@@ -1,2 +1,0 @@
-userdo=$1
-$userdo dnf install emacs
