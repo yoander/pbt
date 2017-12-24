@@ -170,9 +170,11 @@ for extension_name in $extension_names; do
     [[ -f "$ext_file" ]] && extensions="$extensions `source $ext_file`"
 done
 
-./configure "$extensions"
-
 export LDFLAGS="$LDFLAGS -lpthread"
 
-make && make install
+extensions=`echo "$extensions"|sed -r 's/^\s+//'`
+
+./configure ${extensions}
+
+# && make && make install
 
