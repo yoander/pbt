@@ -99,7 +99,28 @@ fi
 [[ -f /etc/os-release ]] && { source /etc/os-release; os_id=$ID; }
 #
 # Installing dependencies
-#
-depfile=./../os/${os_id}
+# Common dependencies
+actions=`echo $php_version|sed -r 's/\.[[:digit:]]+$/.x/'|xargs -I{} echo $os_id $os_id-$web_server $os_id-php-{}`
+if [[ $systemd_integration == true ]]; then
+    actions="$actions $os_id-systemd"
+fi
+echo $actions; exit;
+for action in $actions; do
+    depfile=./../os/${action}
+    [[ -f $depfile ]] && source $depfile $userdo
+done
 
-[[ -f $depfile ]] && source $depfile $userdo
+if [[ "$install_prefix" =~ ^/usr/local/?$ ]]; then
+    sysconfdir=$install_prefix/etc/php
+elif [[ "$PREFIX" =~ ^/usr/?$ ]]; then
+    sysconfdir=/etc/php
+else
+    echo -e "Invalid install dir: $install_prefix"
+fi
+
+EXTENSION_DIR=$install_prefix/lib/php/modules
+export EXTENSION_DIR
+PEAR_INSTALLDIR=$install_prefix/share/pear
+export PEAR_INSTALLDIR
+
+
