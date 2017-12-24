@@ -112,8 +112,8 @@ php_mayor_revision=php-`echo $php_version|sed -r 's/\.[[:digit:]]+$/.x/'`
 actions="`cat <<ACTIONS
 $os_id \
 ${os_id}-${web_server} \
-${os_id}-${php_mayor_revision} \
 ${os_id}-${sysinit}
+${os_id}-${php_mayor_revision} \
 ACTIONS` `echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'`"
 
 # echo $actions
@@ -121,6 +121,7 @@ for action in $actions; do
     depfile="$root_dir/pre-build/${action}"
     [[ -f $depfile ]] && source $depfile $userdo
 done
+exit
 #
 # Compilation params
 if [[ "$install_prefix" =~ ^/usr/local/?$ ]]; then
