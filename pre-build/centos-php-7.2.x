@@ -1,4 +1,4 @@
-$userdo yum -y install libzip-devel
+$userdo yum -y install zlib-devel
 # Donwload libsodium
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
