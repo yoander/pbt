@@ -1,3 +1,4 @@
+$userdo yum -y install libzip-devel
 # Donwload libsodium
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
@@ -9,15 +10,15 @@ if [[ ! -f $libsodium ]]; then
         url = "https://download.libsodium.org/libsodium/releases/$libsodium.sig"
         output="$libsodium.sig"
 URL
-	# Import the public key
-	gpg --import "$root_dir/signatures/libsodium.gpg.asc"
-	# Set as trusted source
-	gpg --with-colon --fingerprint 'Frank Denis' | sed -E -n -e 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
-	# Check integrity
-	! gpg --verify "$libsodium.sig" "$libsodium" &> /dev/null && { 
-	    echo "File corrupted: $libsodium" 
-	    exit
-	} 
+    # Import the public key
+    gpg --import "$root_dir/signatures/libsodium.gpg.asc"
+    # Set as trusted source
+    gpg --with-colon --fingerprint 'Frank Denis' | sed -E -n -e 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+    # Check integrity
+    ! gpg --verify "$libsodium.sig" "$libsodium" &> /dev/null && {
+        echo "File corrupted: $libsodium"
+        exit
+    }
 fi
 sdir=${libsodium%.tar.gz}
 [[ ! -d "$sdir" ]] && tar xzvf "$libsodium"
