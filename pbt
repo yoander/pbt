@@ -118,7 +118,7 @@ ACTIONS` `echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'`"
 
 # echo $actions
 for action in $actions; do
-    depfile="$root_dir/os/${action}"
+    depfile="$root_dir/pre-build/${action}"
     [[ -f $depfile ]] && source $depfile $userdo
 done
 #

@@ -2,14 +2,13 @@
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
 if [[ ! -f $libsodium ]]; then
-
     curl -# -K - <<URL
         url = "https://download.libsodium.org/libsodium/releases/$filename"
         output = "$libsodium"
 
         url = "https://download.libsodium.org/libsodium/releases/$filename.sig"
         output="$libsodium.sig"
-    URL
+URL
 fi
 # Import the public key
 gpg --import "$root_dir/signatures/libsodium.gpg.asc"
