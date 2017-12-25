@@ -1,1 +1,1 @@
-$userdo yum -y nginx
+$userdo yum -y install nginx
