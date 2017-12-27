@@ -124,10 +124,10 @@ done
 #
 # Compilation params
 if [[ "$install_prefix" =~ ^/usr/local/?$ ]]; then
-	install_prefix=/usr/local
+    install_prefix=/usr/local
     sysconfdir=$install_prefix/etc/php
 elif [[ "$install_prefix" =~ ^/usr/?$ ]]; then
-	install_prefix=/usr
+    install_prefix=/usr
     sysconfdir=/etc/php
 else
     echo "Invalid install dir: $install_prefix"
@@ -166,7 +166,6 @@ EXT`
 extensions=
 for extension_name in $extension_names; do
     ext_file="$root_dir/extensions/${extension_name}.conf"
-    echo $ext_file
     [[ -f "$ext_file" ]] && extensions="$extensions `source $ext_file`"
 done
 
@@ -174,7 +173,5 @@ export LDFLAGS="$LDFLAGS -lpthread"
 
 extensions=`echo "$extensions"|sed -r 's/^\s+//'`
 
-./configure ${extensions}
-
-# && make && make install
+./configure ${extensions} && make && make install
 
