@@ -143,9 +143,9 @@ PEAR_INSTALLDIR=$install_prefix/share/pear
 export PEAR_INSTALLDIR
 #
 # Create conf dirs
-[[ ! -d "$sysconfdir" ]] && mkdir -p $sysconfdir/conf.d && echo Created $sysconfdir, $sysconfdir/conf.d
-[[ ! -d "$EXTENSION_DIR" ]] && mkdir -p $EXTENSION_DIR && echo Created $EXTENSION_DIR
-[[ ! -d "$PEAR_INSTALLDIR" ]] && mkdir -p $PEAR_INSTALLDIR && echo Created $PEAR_INSTALLDIR 
+[[ ! -d "$sysconfdir" ]] && $userdo mkdir -p $sysconfdir/conf.d && echo Created $sysconfdir, $sysconfdir/conf.d
+[[ ! -d "$EXTENSION_DIR" ]] && $userdo mkdir -p $EXTENSION_DIR && echo Created $EXTENSION_DIR
+[[ ! -d "$PEAR_INSTALLDIR" ]] && $userdo mkdir -p $PEAR_INSTALLDIR && echo Created $PEAR_INSTALLDIR 
 #
 # New icu libs for intl does not include this stdc++ lib ld flag
 EXTRA_LIBS=-lstdc++
