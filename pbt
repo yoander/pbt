@@ -69,21 +69,24 @@ sha256=$(cat ./signatures/$php_file.sig)
 cd ./downloads
 #
 # Download PHP, if the file is not already downloaded, if the file was downloaded partially then delete it
+check_integrity=true
 if [[ ! -f ./$php_file ]]; then
     if [[ `curl -V|grep -i 'features:.*\bmetalink\b'` ]]; then # Test for metalink support
         curl -# -L --metalink file://$root_dir/metalinks/${php_file}.metalink || exit 2
+        [[ $? ]] && check_integrity=false 
     else # Fallback download method
-        download=false
-        while read mirror && [[ $download == false ]]; do
-            curl -# -L `printf $mirror $php_file` -o $php_file
-            if [[ "`sha256sum ./$php_file|awk 'print $1'`" != "$sha25" ]]; then
-                echo "Corrupted file: $php_file"
-                exit 3
-            fi
-        download=$?
-    done < ./../mirrors.txt
-    [[ ! $? ]] && exit
+        while read mirror && ! curl -# -L `printf $mirror $php_file` -o $php_file; do
+            # Sleep 1s
+            sleep 1
+        done < ./../mirrors.txt
+        [[ ! $? ]] && exit
     fi
+fi
+#
+# If download check integrity
+if [[ $check_integrity==true ]] && [[ "`sha256sum ./$php_file|awk '{print $1}'`" != "$sha256" ]]; then
+    echo "Corrupted file: $php_file"
+    exit 3
 fi
 #
 # Uncompressing: Uncompress only if the php-${php_version} dir does not exist to uncompress again delete the dir
@@ -140,7 +143,6 @@ PEAR_INSTALLDIR=$install_prefix/share/pear
 export PEAR_INSTALLDIR
 #
 # Create conf dirs
-echo Created $sysconfdir, $sysconfdir/conf.d, $EXTENSION_DIR, $PEAR_INSTALLDIR
 [[ ! -d "$sysconfdir" ]] && mkdir -p $sysconfdir/conf.d && echo Created $sysconfdir, $sysconfdir/conf.d
 [[ ! -d "$EXTENSION_DIR" ]] && mkdir -p $EXTENSION_DIR && echo Created $EXTENSION_DIR
 [[ ! -d "$PEAR_INSTALLDIR" ]] && mkdir -p $PEAR_INSTALLDIR && echo Created $PEAR_INSTALLDIR 
