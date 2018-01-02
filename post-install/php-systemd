@@ -1,0 +1,4 @@
+$userdo cp -v ./sapi/fpm/php-fpm.service /etc/systemd/system/php-fpm.service && \
+$userdo systemctl enable php-fpm && \
+$userdo systemctl start php-fpm && \
+$userdo systemctl status php-fpm

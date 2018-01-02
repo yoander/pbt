@@ -1,0 +1,1 @@
+$userdo cp -v php.ini-development $sysconfdir/php.ini

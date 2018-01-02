@@ -1,0 +1,2 @@
+$userdo cp -pv $sysconfdir/php-fpm.conf.default $sysconfdir/php-fpm.conf
+$userdo cp -pv $sysconfdir/php-fpm.d/www.conf.default $sysconfdir/php-fpm.d/www.conf
