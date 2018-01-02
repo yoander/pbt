@@ -105,23 +105,38 @@ if [[ ! -d ./php-${php_version} ]]; then
 fi
 #
 # Load OS details
-[[ -f /etc/os-release ]] && { source /etc/os-release; os_id=$ID; }
+[[ -f /etc/os-release ]] && { source /etc/os-release; os_id=$ID; os_version=$VERSION_ID; }
 #
 # Installing dependencies
 # Common dependencies
 # Replace minor release by an x, 7.2.0 => 7.2.x
 php_mayor_revision=php-`echo $php_version|sed -r 's/\.[[:digit:]]+$/.x/'`
 #actions=`echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'|xargs -I{} echo {} "$os_id $os_id-$web_server $os_id-$php_mayor_revision $os_id-$sysinit"`
-actions="`cat <<ACTIONS
-$os_id \
-${os_id}-${web_server} \
-${os_id}-${sysinit} \
-${os_id}-${php_mayor_revision}
-ACTIONS` `echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'`"
+#actions="`cat <<ACTIONS
+#$os_id \
+#${os_id}-${web_server} \
+#${os_id}-${sysinit} \
+#${os_id}-${php_mayor_revision}
+#ACTIONS` `echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'`"
 
-# echo $actions
-for action in $actions; do
-    depfile="$root_dir/pre-build/${action}"
+prebuild_dir="$root_dir/pre-build"
+#
+# Common actions
+for action in "$os_id ${os_id}-${web_server} ${os_id}-${sysinit}"; do
+    depfile="$prebuild_dir/$action"
+    [[ -f $depfile ]] && source $depfile $userdo
+done
+#
+# Load php prebuild action, example centos-7-php-7.2.x overrids centos-php-7.2.x 
+if [[ -f "$prebuild_dir/${os_id}-${os_version}-${php_mayor_revision}" ]]; do
+    source "$prebuild_dir/${os_id}-${os_version}-${php_mayor_revision}"
+elif [[ -f "$prebuild_dir/${os_id}-${php_mayor_revision}" ]]
+    source "$prebuild_dir/${os_id}-${php_mayor_revision}"
+fi
+#
+# Load databases prebuild actions
+for action in "$databases"; do
+    depfile="$prebuild_dir/$action"
     [[ -f $depfile ]] && source $depfile $userdo
 done
 #
@@ -157,22 +172,23 @@ if [ ! -f ./configure ]; then
     ./buildconf --force # Build configure, not included in git versions
 fi
 
-extension_names=`cat <<EXT
-extensions-common \
-extensions-${php_mayor_revision} \
-extensions-${sysinit} \
-extensions-${databases} \
-extensions-${php_mode} \
-extensions-${thread_model}
-EXT`
+#extension_names=`cat <<EXT
+#extensions-common \
+#extensions-${php_mayor_revision} \
+#extensions-${sysinit} \
+#extensions-${databases} \
+#extensions-${php_mode} \
+#extensions-${thread_model}
+#EXT`
 extensions=
-for extension_name in $extension_names; do
-    ext_file="$root_dir/extensions/${extension_name}.conf"
+for extension_name in "common $php_mayor_revision $sysinit $databases $php_mode $thread_model"; do
+    ext_file="$root_dir/extensions/extensions-${extension_name}.conf"
     [[ -f "$ext_file" ]] && extensions="$extensions `source $ext_file`"
 done
 
 export LDFLAGS="$LDFLAGS -lpthread"
-
+#
+# Remove leading white space 
 extensions=`echo "$extensions"|sed -r 's/^\s+//'`
 
 ./configure ${extensions} && make && make install
