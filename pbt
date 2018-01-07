@@ -182,7 +182,7 @@ fi
 #EXT`
 extensions=
 for extension_name in "common $php_mayor_revision $sysinit $databases $php_mode $thread_model"; do
-    ext_file="$root_dir/extensions/extensions-${extension_name}.conf"
+    ext_file="$root_dir/extensions/${extension_name}.conf"
     [[ -f "$ext_file" ]] && extensions="$extensions `source $ext_file`"
 done
 
