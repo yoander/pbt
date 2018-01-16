@@ -112,19 +112,13 @@ fi
 # Replace minor release by an x, 7.2.0 => 7.2.x
 php_mayor_revision=php-`echo $php_version|sed -r 's/\.[[:digit:]]+$/.x/'`
 #actions=`echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'|xargs -I{} echo {} "$os_id $os_id-$web_server $os_id-$php_mayor_revision $os_id-$sysinit"`
-#actions="`cat <<ACTIONS
-#$os_id \
-#${os_id}-${web_server} \
-#${os_id}-${sysinit} \
-#${os_id}-${php_mayor_revision}
-#ACTIONS` `echo $databases|sed -r 's/([[:alpha:]]+)/'$os_id'-\1/g'`"
 
 prebuild_dir="$root_dir/pre-build"
 #
 # Common actions
 for action in "$os_id ${os_id}-${web_server} ${os_id}-${sysinit}"; do
-    depfile="$prebuild_dir/$action"
-    [[ -f $depfile ]] && source $depfile $userdo
+    action_file="$prebuild_dir/$action"
+    [[ -f $depfile ]] && source $action_file
 done
 #
 # Load php prebuild action, example centos-7-php-7.2.x overrids centos-php-7.2.x 
@@ -136,8 +130,8 @@ fi
 #
 # Load databases prebuild actions
 for action in "$databases"; do
-    depfile="$prebuild_dir/$action"
-    [[ -f $depfile ]] && source $depfile $userdo
+    action_file="$prebuild_dir/$action"
+    [[ -f $depfile ]] && source $action_file
 done
 #
 # Compilation params
@@ -172,14 +166,6 @@ if [ ! -f ./configure ]; then
     ./buildconf --force # Build configure, not included in git versions
 fi
 
-#extension_names=`cat <<EXT
-#extensions-common \
-#extensions-${php_mayor_revision} \
-#extensions-${sysinit} \
-#extensions-${databases} \
-#extensions-${php_mode} \
-#extensions-${thread_model}
-#EXT`
 extensions=
 for extension_name in "common $php_mayor_revision $sysinit $databases $php_mode $thread_model"; do
     ext_file="$root_dir/extensions/${extension_name}.conf"
@@ -193,3 +179,11 @@ extensions=`echo "$extensions"|sed -r 's/^\s+//'`
 
 ./configure ${extensions} && make && make install
 
+postinstall_dir=$root_dir/post-install
+#
+# Post install actions
+for action in "$php_env $php_mode opcache $sysinit"; do
+    action_file="$postinstall_dir/$action"
+    [[ -f $action_file ]] && source $action_file $userdo
+    
+done
