@@ -1,0 +1,9 @@
+service_name=php-fpm.service
+if [[ $sysinit_versioned == true ]]; then
+    service_name=$(echo php-7.2.x|sed -r 's/[-\.x]//g')-fpm
+fi
+
+$userdo cp -v ./sapi/fpm/php-fpm.service /etc/systemd/system/$service_name && \
+$userdo systemctl enable $service_name && \
+$userdo systemctl start $service_name && \
+$userdo systemctl status $service_name
