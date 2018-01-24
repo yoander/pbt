@@ -160,7 +160,7 @@ export PEAR_INSTALLDIR
 EXTRA_LIBS=-lstdc++
 export EXTRA_LIBS
 
-cd "php-${php_version}"
+cd "$root_dir/downloads/php-${php_version}"
 
 if [ ! -f ./configure ]; then
     ./buildconf --force # Build configure, not included in git versions
