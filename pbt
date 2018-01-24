@@ -118,7 +118,7 @@ prebuild_dir="$root_dir/pre-build"
 # Common actions
 for action in "$os_id ${os_id}-${web_server} ${os_id}-${sysinit}"; do
     action_file="$prebuild_dir/$action"
-    [[ -f $depfile ]] && source $action_file
+    [[ -f $action_file ]] && source $action_file
 done
 #
 # Load php prebuild action, example centos-7-php-7.2.x overrids centos-php-7.2.x 
@@ -131,7 +131,7 @@ fi
 # Load databases prebuild actions
 for action in "$databases"; do
     action_file="$prebuild_dir/$action"
-    [[ -f $depfile ]] && source $action_file
+    [[ -f $action_file ]] && source $action_file
 done
 #
 # Compilation params
@@ -184,6 +184,5 @@ postinstall_dir=$root_dir/post-install
 # Post install actions
 for action in "$php_env $php_mode opcache $sysinit"; do
     action_file="$postinstall_dir/$action"
-    [[ -f $action_file ]] && source $action_file $userdo
-    
+    [[ -f $action_file ]] && source $action_file
 done
