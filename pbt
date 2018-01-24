@@ -124,7 +124,7 @@ done
 # Load php prebuild action, example centos-7-php-7.2.x overrids centos-php-7.2.x 
 if [[ -f "$prebuild_dir/${os_id}-${os_version}-${php_mayor_revision}" ]]; then
     source "$prebuild_dir/${os_id}-${os_version}-${php_mayor_revision}"
-elif [[ -f "$prebuild_dir/${os_id}-${php_mayor_revision}" ]]
+elif [[ -f "$prebuild_dir/${os_id}-${php_mayor_revision}" ]]; then
     source "$prebuild_dir/${os_id}-${php_mayor_revision}"
 fi
 #
