@@ -179,11 +179,13 @@ extensions=`echo "$extensions"|sed -r 's/^\s+//'`
 
 ./configure ${extensions} && make && make install
 
-postinstall_dir=$root_dir/post-install
-#
-# Post install actions
-for action in $php_env $php_mode opcache $sysinit; do
-    action_file="$postinstall_dir/$action"
-    [[ -f $action_file ]] && source $action_file
-done
+if [[ $? ]]; then
+    postinstall_dir=$root_dir/post-install
+    #
+    # Post install actions
+    for action in $php_env $php_mode opcache $sysinit; do
+        action_file="$postinstall_dir/$action"
+        [[ -f $action_file ]] && source $action_file
+    done
+fi 
 
