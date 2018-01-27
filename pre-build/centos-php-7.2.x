@@ -1,4 +1,5 @@
 # Donwload libsodium
+arch=$(getconf LONGBIT)
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
 if [[ ! -f $libsodium ]]; then
@@ -20,15 +21,22 @@ URL
         exit
     }
 fi
-sdir=${libsodium%.tar.gz}
-[[ ! -d "$sdir" ]] && tar xzvf "$libsodium"
+# Uncompress libsodium dir
+libdir=${libsodium%.tar.gz}
+[[ ! -d "$libdir" ]] && tar xzvf "$libsodium"
 
 found=`whereis libsodium | awk -F: '{if ($2 != "") print "yes"; else print "no";}'`
 [[ $found == 'no' ]] && {
     echo Compiling $libsodium
-    cd "$sdir" 
+    cd "$libdir" 
     ./configure --prefix=/usr && make && make check && $userdo make install;
+    # No error in last operation
+	[[ $? ]] && \
+        [[ $arch == 64 ]] && \
+        [[ ! -f /usr/lib64/libsodium.so.23 ]] && \
+        $userdo ln -s /usr/lib/libsodium.so.23 /usr/lib64/libsodium.so.23
 }
+
 
 found=`whereis libzip | awk -F: '{if ($2 != "") print "yes"; else print "no";}'`
 if [[ $found == 'no' ]]; then
@@ -37,10 +45,17 @@ if [[ $found == 'no' ]]; then
     $userdo yum -y install zlib-devel bzip2-devel
     # Download libzip, so far I did not find signature then skip integrity checking
     libzip=libzip-1.3.2.tar.gz
+    echo Downloading libzip
     curl -# -O https://libzip.org/download/$libzip
     tar xzvf $libzip
     cd libzip-1.3.2
     cd "${libzip%.tar.gz}"
-   ./configure --prefix=/usr && make && $userdo make install && $userdo ln -s /usr/lib/libzip.so.5.0.0 /usr/lib64/libzip.so.5
+    echo Compiling libzip
+    ./configure --prefix=/usr && make && $userdo make install 
+    # No error in last operation
+	[[ $? ]] && \
+        [[ $arch == 64 ]] && \
+        [[ ! -f  /usr/lib64/libzip.so.5 ]] && \
+        $userdo ln -s /usr/lib/libzip.so.5.0.0 /usr/lib64/libzip.so.5
 fi
 
