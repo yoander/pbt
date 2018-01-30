@@ -1,5 +1,5 @@
 # Donwload libsodium
-arch=$(getconf LONGBIT)
+arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
 if [[ ! -f $libsodium ]]; then
