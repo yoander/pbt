@@ -1,6 +1,6 @@
 service_name=php-fpm.service
 if [[ $sysinit_versioned == true ]]; then
-    service_name=$(echo $php_mayor_release|sed -r 's/[-\.x]//g')-fpm.service
+    service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')-fpm.service
 fi
 
 $userdo cp -v ./sapi/fpm/php-fpm.service /etc/systemd/system/$service_name && \
