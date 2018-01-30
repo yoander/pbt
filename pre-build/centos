@@ -2,4 +2,6 @@ $userdo yum -y install epel-release gcc gcc-c++ make autoconf \
     flex bison libtool libstdc++-devel libxml2-devel \
     openssl openssl-devel pcre-devel sqlite-devel \
     libcurl-devel libicu-devel gd-devel readline-devel && \
-$userdo ln -fs /usr/lib64/libpcre.so.1.2.0 /usr/lib/libpcre.so
+[[ ! -f /user/lib/libpcre.so ]] && \
+    [[ $(getconf LONG_BIT) == 64 ]] && \
+    $userdo ln -fs /usr/lib64/libpcre.so.1.2.0 /usr/lib/libpcre.so
