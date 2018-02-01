@@ -1,5 +1,8 @@
 # Create fpm group and user
-$userdo groupadd --system $fpm_group && \ 
-$userdo useradd --system -m -d /var/www -s /usr/sbin/nologin -g $fpm_group $fpm_user
+! grep -q "^$fpm_group:" /etc/group && \
+	$userdo groupadd --system $fpm_group
+! grep -q "^$fpm_user:" /etc/passwd && \
+	$userdo useradd --system -m -d /var/www -s /usr/sbin/nologin -g $fpm_group $fpm_user
+# Copy fpm configuration files
 $userdo cp -pv $sysconfdir/php-fpm.conf.default $sysconfdir/php-fpm.conf
 $userdo cp -pv $sysconfdir/php-fpm.d/www.conf.default $sysconfdir/php-fpm.d/www.conf
