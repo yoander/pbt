@@ -2,7 +2,10 @@
 ! grep -q "^$fpm_group:" /etc/group && \
 	$userdo groupadd --system $fpm_group
 ! grep -q "^$fpm_user:" /etc/passwd && \
-	$userdo useradd --system -m -d /var/www -s /usr/sbin/nologin -g $fpm_group $fpm_user
+	$userdo useradd --system -m -d /var/www -s /usr/sbin/nologin -g $fpm_group $fpm_user && \
+	find /path/to/dir -maxdepth 0 -empty && \ # Change owner and perm only if /var/www is empty
+	$userdo chown root:root -c /var/www/ && \
+	$userdo chmod -c 755 /var/www/ 
 # Copy fpm configuration files
 $userdo cp -pv $sysconfdir/php-fpm.conf.default $sysconfdir/php-fpm.conf
 $userdo cp -pv $sysconfdir/php-fpm.d/www.conf.default $sysconfdir/php-fpm.d/www.conf
