@@ -1,16 +1,16 @@
-service_name=php-fpm.service
+service_name=php
 unit_file=./sapi/fpm/php-fpm.service
-
 [[ $sysinit_versioned == true ]] && \
-    service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')-fpm.service
+    service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')
 
-systemd_unit=/usr/lib/systemd/system/$service_name
+systemd_unit=/usr/lib/systemd/system/${service_name}-fpm.service
 $userdo cp -v $unit_file $systemd_unit
 #
-# Replace PID file to allow several PHP versions 
+# Replace PID file to allow several PHP versions
 [[ $sysinit_versioned == true ]] && \
-	sed -r -i "s/PIDFile=\/var\/run\/php-fpm.pid/PIDFile=\/var\/run\/'$php_mayor_revision'-fpm.pid/"
+		sed -r -i "s/PIDFile=\/var\/run\/php-fpm.pid/PIDFile=\/var\/run\/${service_name}-fpm.pid/" $systemd_unit
 #
-$userdo systemctl enable $service_name && \
-$userdo systemctl start $service_name && \
-$userdo systemctl status $service_name
+# Enable and start the unit
+$userdo systemctl enable ${service_name}-fpm && \
+$userdo systemctl start ${service_name}-fpm && \
+$userdo systemctl status ${service_name}-fpm
