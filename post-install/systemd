@@ -1,16 +1,17 @@
 service_name=php-fpm.service
-wantedby=$(grep -o WantedBy=.* /etc/systemd/system/php72-fpm.service|cut -d= -f2).wants
-if [[ $sysinit_versioned == true ]]; then
+unit_file=./sapi/fpm/php-fpm.service
+wantedby=$(grep -o WantedBy=.* $unit_file|cut -d= -f2).wants
+
+[[ $sysinit_versioned == true ]] && \
     service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')-fpm.service
-fi
+
 systemd_unit=/etc/systemd/system/$wantedby/$service_name
-$userdo cp -v ./sapi/fpm/php-fpm.service $systemd_unit
+$userdo cp -v $unit_file $systemd_unit
 #
 # Replace PID file to allow several PHP versions 
-if [[ $sysinit_versioned == true ]]; then
+[[ $sysinit_versioned == true ]] && \
 	sed -r -i "s/PIDFile=\/var\/run\/php-fpm.pid/PIDFile=\/var\/run\/'$php_mayor_revision'-fpm.pid/"
-fi
 #
-$userdo systemctl enable $service_name
+$userdo systemctl enable $service_name && \
 $userdo systemctl start $service_name && \
 $userdo systemctl status $service_name
