@@ -62,7 +62,7 @@ metalink_file=./metalinks/${php_file}.metalink
 sha256=$(cat ./signatures/$php_file.sig)
 [[ ! -f $metalink_file ]] && source ./template.metalink > $metalink_file
 #
-# Create downloas dir
+# Create download dir
 [[ ! -d ./downloads ]] && mkdir downloads
 #
 # Move to downloads dir
