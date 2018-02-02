@@ -1,11 +1,10 @@
 service_name=php-fpm.service
 unit_file=./sapi/fpm/php-fpm.service
-wantedby=$(grep -o WantedBy=.* $unit_file|cut -d= -f2).wants
 
 [[ $sysinit_versioned == true ]] && \
     service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')-fpm.service
 
-systemd_unit=/etc/systemd/system/$wantedby/$service_name
+systemd_unit=/usr/lib/systemd/system/$service_name
 $userdo cp -v $unit_file $systemd_unit
 #
 # Replace PID file to allow several PHP versions 
