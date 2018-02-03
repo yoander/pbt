@@ -176,9 +176,11 @@ export LDFLAGS="$LDFLAGS -lpthread"
 #
 # Remove leading white space 
 extensions=`echo "$extensions"|sed -r 's/^\s+//'`
-
+#
+# Configure, compile and install
 ./configure ${extensions} && make && make install
-
+#
+# Execute post install action if compilation finish sucessful
 if [[ $? ]]; then
     postinstall_dir=$root_dir/post-install
     #
