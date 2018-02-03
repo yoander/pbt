@@ -71,7 +71,8 @@ cd ./downloads
 # Download PHP, if the file is not already downloaded, if the file was downloaded partially then delete it
 check_integrity=true
 if [[ ! -f ./$php_file ]]; then
-    if [[ `curl -V|grep -i 'features:.*\bmetalink\b'` ]]; then # Test for metalink support
+    echo Downloading $php_file...
+	if [[ `curl -V|grep -i 'features:.*\bmetalink\b'` ]]; then # Test for metalink support
         curl -# -L --metalink file://$root_dir/metalinks/${php_file}.metalink || exit 2
         [[ $? ]] && check_integrity=false 
     else # Fallback download method
