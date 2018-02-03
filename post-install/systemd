@@ -8,7 +8,7 @@ $userdo cp -v $unit_file $systemd_unit
 #
 # Replace PID file to allow several PHP versions
 [[ $sysinit_versioned == true ]] && \
-		sed -r -i "s/PIDFile=\/var\/run\/php-fpm.pid/PIDFile=\/var\/run\/${service_name}-fpm.pid/" $systemd_unit
+	sed -r -i "s/PIDFile=\/var\/run\/php-fpm.pid/PIDFile=\/var\/run\/${service_name}-fpm.pid/" $systemd_unit
 #
 # Enable and start the unit
 $userdo systemctl enable ${service_name}-fpm && \
