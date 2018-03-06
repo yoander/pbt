@@ -179,7 +179,7 @@ export LDFLAGS="$LDFLAGS -lpthread"
 extensions=`echo "$extensions"|sed -r 's/^\s+//'`
 #
 # Configure, compile and install
-./configure ${extensions} && make && make install
+./configure ${extensions} && make && $userdo make install
 #
 # Execute post install action if compilation finish sucessful
 if [[ $? ]]; then
