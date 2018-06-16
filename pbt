@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # GNU shell script to compile PHP
 # --------------------------------------------------------------------
-# Copyleft 2017 Yoander Valdés (sedlav) Rodríguez <http://www.librebyte.net/>
+# Copyleft 2018 Yoander Valdés (sedlav) Rodríguez <http://www.librebyte.net/>
 # This script is released under GNU GPLV3 licence
 # --------------------------------------------------------------------
 # It's intended to use as helper for PHP compilation process.
@@ -186,7 +186,7 @@ if [[ $? ]]; then
     postinstall_dir=$root_dir/post-install
     #
     # Post install actions
-    for action in $php_env $php_mode opcache $sysinit; do
+    for action in $php_env $php_mode opcache $sysinit ${os_id}-${web_server}; do
         action_file="$postinstall_dir/$action"
         [[ -f $action_file ]] && source $action_file
     done
