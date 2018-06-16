@@ -13,3 +13,7 @@ location = /info.php {
 CONF"
 
 $user_do bash -c 'echo "<?php phpinfo();" > /var/www/info.php'
+
+$user_do systemctl enable nginx
+$user_do systemctl start nginx
+$user_do systemctl status nginx
