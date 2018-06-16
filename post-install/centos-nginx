@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-fpm_listen=192.168.100.4:9000
 [[ $fpm_listen =~ (.*):([[:digit:]]+) ]] && \
 	{ ip=${BASH_REMATCH[1]}; port=${BASH_REMATCH[2]}; } || \
 		{ ip=127.0.0.1; port=$fpm_listen; }
