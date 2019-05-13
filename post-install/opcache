@@ -1,1 +1,1 @@
-$userdo echo 'zend_extension=opcache.so' > $sysconfdir/conf.d/20-opcache.ini
+$userdo sh -c "echo 'zend_extension=opcache.so' > $sysconfdir/conf.d/20-opcache.ini"
