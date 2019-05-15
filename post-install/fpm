@@ -10,6 +10,6 @@
 $userdo cp -pv $sysconfdir/php-fpm.conf.default $sysconfdir/php-fpm.conf
 $userdo cp -pv $sysconfdir/php-fpm.d/www.conf.default $sysconfdir/php-fpm.d/www.conf
 [[ $fpm_listen != '' ]] && \
-	sed -r -i "s/^listen = .*/listen = $fpm_listen/" $sysconfdir/php-fpm.d/www.conf
+	$userdo sed -r -i "s/^listen = .*/listen = $fpm_listen/" $sysconfdir/php-fpm.d/www.conf
 [[ "$fpm_allowed_clients" != '' ]] && \
-	sed -r -i "s/^;?listen.allowed_clients = .*/listen.allowed_clients = $fpm_allowed_clients/" $sysconfdir/php-fpm.d/www.conf
+	$userdo sed -r -i "s/^;?listen.allowed_clients = .*/listen.allowed_clients = $fpm_allowed_clients/" $sysconfdir/php-fpm.d/www.conf
