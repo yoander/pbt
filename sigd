@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# This is a little tool to download hash from
+# PHP site but before use it verify that your
+# DNS is not poisoned
+#
+source pbt.ini
+filename=php-${php_version}.${compression}
+curl -s "https://www.php.net/releases/?json&version=$php_version"|jq -r '.source|.[]|select(.filename=="'$filename'").sha256' > signatures/${filename}.sig
