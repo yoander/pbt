@@ -1,4 +1,3 @@
-$userdo apt -y install libsodium18 libzip4
 arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 baseurl=https://ftp.pcre.org/pub/pcre
@@ -45,9 +44,3 @@ found=`whereis -B /usr/local -f libpcre | awk -F: '{if ($2 != "") print "yes"; e
 	    --enable-jit-sealloc \
             --disable-static                         && make && $userdo make install
 }
-
-# No error in last operation
-#[[ $? ]] && \
-#[[ $arch == 64 ]] && \
-#[[ ! -f /usr/lib64/libsodium.so.23 ]] && \
-#$userdo ln -s /usr/lib/libsodium.so.23 /usr/lib64/libsodium.so.23
