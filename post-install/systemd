@@ -3,7 +3,15 @@ unit_file=./sapi/fpm/php-fpm.service
 [[ $sysinit_versioned == true ]] && \
     service_name=$(echo $php_mayor_revision|sed -r 's/[-\.x]//g')
 
-systemd_unit=/usr/lib/systemd/system/${service_name}-fpm.service
+if [ -d /usr/lib/systemd/system ]; then
+	systemd_unit=/usr/lib/systemd/system
+elif [ -d /lib/systemd/system ]; then
+	systemd_unit=/lib/systemd/system
+else
+	echo Unable to locate systemd dir!
+	exit;
+fi
+systemd_unit=${systemd_unit}/${service_name}-fpm.service
 $userdo cp -v $unit_file $systemd_unit
 #
 # Replace PID file to allow several PHP versions
