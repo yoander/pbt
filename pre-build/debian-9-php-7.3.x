@@ -26,12 +26,12 @@ URL
         exit
     }
 fi
-# Uncompress libsodium dir
+# Uncompress lib
 libdir=${lib%.tar.bz2}
 [[ ! -d "$libdir" ]] && tar xjvf "$lib"
 found=`whereis -B /usr/local -f libpcre | awk -F: '{if ($2 != "") print "yes"; else print "no";}'`
 [[ $found == 'no' ]] && {
-    echo Compiling $libsodium
+    echo Compiling $libdir
     cd "$libdir" 
     ./configure --prefix=/usr/local \
             --enable-unicode \
