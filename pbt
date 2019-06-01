@@ -48,7 +48,7 @@ if [[ $is_root == false ]]; then
     exit 1
 fi
 
-root_dir="$(cd "$(dirname "$0" )" && pwd )"
+root_dir="$(cd "$(dirname "$0")" && pwd)"
 #
 # Load configuration
 source ./pbt.ini
