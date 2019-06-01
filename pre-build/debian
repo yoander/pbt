@@ -1,7 +1,6 @@
 $userdo apt-get install -y make autoconf gcc libxml2-dev libssl-dev openssl libsodium-dev \
-       libsqlite3-dev libbz2-dev libzip-dev \
-       libcurl4-openssl-dev libgd-dev \
-       libicu-dev libwebp-dev libxmp-dev libmcrypt-dev libpq-dev libreadline-dev bison flex re2c libtool \
+       libsqlite3-dev libbz2-dev libzip-dev libcurl4-openssl-dev libgd-dev libicu-dev \
+       libmcrypt-dev libpq-dev libreadline-dev bison flex re2c libtool \
        $(apt-cache search -n '^libstdc\+\+\-(\.?[[:digit:]])+\1*\-dev$'|sort -r|head -n 1|awk '{print $1}') \
        $(apt-cache search -n '^g\+\+\-(\.?[[:digit:]])+\1*$'|sort -r|head -n 1|awk '{print $1}')
 
