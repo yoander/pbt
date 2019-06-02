@@ -91,3 +91,9 @@ $ ./pbt
 |NO|Platform|Versions|
 |--|--------|--------|
 |1|CentOS|7|
+
+## Blogs and tutorials
+
+- [pbt – Una herramienta para compilar PHP](https://www.librebyte.net/php/pbt-una-herramienta-para-compilar-php/)
+
+- [Cómo Compilar/Instalar PHP-7.2 en CentOS](https://www.librebyte.net/php/como-compilar-instalar-php-7-2-en-centos/)
