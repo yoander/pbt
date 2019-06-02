@@ -89,4 +89,5 @@ $ ./pbt
 ## Tested OS
 
 |NO|Platform|Versions|
+|--|--------|--------|
 |1|CentOS|7|
