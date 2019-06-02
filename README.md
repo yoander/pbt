@@ -85,3 +85,8 @@ The configuration file **pbt.ini** allows to set parameters that will be used du
 ```
 $ ./pbt
 ```
+
+## Tested OS
+
+|NO|Platform|Versions|
+|1|CentOS|7|
