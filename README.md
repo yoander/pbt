@@ -1,4 +1,8 @@
-**pbt** is a tool written in BASH that allows you to compile PHP from the source code, pbt is the evolution of the php-build.sh script allowing greater flexibility and customization in the PHP compilation / installation process. Some of the advantages of using pbt are:
+## Introduction
+
+**pbt** is a tool written in BASH that allows to compile PHP from the source code, pbt is the evolution of the php-build.sh script allowing greater flexibility and customization in the PHP compilation / installation process.
+
+## Features
 
 - Use a configuration file (pbt.ini) instead of the command line options.
 
@@ -50,11 +54,11 @@
 
 The configuration file **pbt.ini** allows to set parameters that will be used during the compilation process.
 
-** php_version:** Set the version to download / compile.
+**php_version:** Set the version to download / compile.
 
 ** compression:** Sets the extension of the file to be downloaded.
 
-** php_mode:** Sets the way PHP will run: fpm or mod_php
+**php_mode:** Sets the way PHP will run: fpm or mod_php
 
 **fpm_user:** User under which the fpm service will be executed.
 
