@@ -56,7 +56,7 @@ The configuration file **pbt.ini** allows to set parameters that will be used du
 
 **php_version:** Set the version to download / compile.
 
-** compression:** Sets the extension of the file to be downloaded.
+**compression:** Sets the extension of the file to be downloaded.
 
 **php_mode:** Sets the way PHP will run: fpm or mod_php
 
