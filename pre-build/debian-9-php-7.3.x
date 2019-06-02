@@ -29,7 +29,7 @@ fi
 # Uncompress lib
 libdir=${lib%.tar.bz2}
 [[ ! -d "$libdir" ]] && tar xjvf "$lib"
-found=`whereis -B /usr/local -f libpcre | awk -F: '{if ($2 != "") print "yes"; else print "no";}'`
+found=$(find /usr/local/lib -type f -name 'libpcre2*' -print -quit)
 [[ $found == 'no' ]] && {
     echo Compiling $libdir
     cd "$libdir" 
