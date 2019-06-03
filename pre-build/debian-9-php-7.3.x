@@ -30,7 +30,7 @@ fi
 libdir=${lib%.tar.bz2}
 [[ ! -d "$libdir" ]] && tar xjvf "$lib"
 found=$(find /usr/local/lib -type f -name 'libpcre2*' -print -quit)
-[[ $found == 'no' ]] && {
+[[ $found == '' ]] && {
     echo Compiling $libdir
     cd "$libdir" 
     ./configure --prefix=/usr/local \
