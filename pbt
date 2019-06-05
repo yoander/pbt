@@ -27,6 +27,7 @@
 #
 main_conf=
 userdo=
+arch_id=$(getconf LONG_BIT)
 #
 # Testing if you have root access!
 if [[ 'root' == whoami ]]; then

@@ -1,5 +1,4 @@
 # Donwload libsodium
-arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 libsodium=libsodium-1.0.16.tar.gz
 if [[ ! -f $libsodium ]]; then
@@ -32,7 +31,7 @@ found=`whereis libsodium | awk -F: '{if ($2 != "") print "yes"; else print "no";
     ./configure --prefix=/usr && make && make check && $userdo make install;
     # No error in last operation
 	[[ $? ]] && \
-        [[ $arch == 64 ]] && \
+        [[ $arch_id == 64 ]] && \
         [[ ! -f /usr/lib64/libsodium.so.23 ]] && \
         $userdo ln -s /usr/lib/libsodium.so.23 /usr/lib64/libsodium.so.23
 }
@@ -54,7 +53,7 @@ if [[ $found == 'no' ]]; then
     ./configure --prefix=/usr && make && $userdo make install 
     # No error in last operation
 	[[ $? ]] && \
-        [[ $arch == 64 ]] && \
+        [[ $arch_id == 64 ]] && \
         [[ ! -f  /usr/lib64/libzip.so.5 ]] && \
         $userdo ln -s /usr/lib/libzip.so.5.0.0 /usr/lib64/libzip.so.5
 fi
