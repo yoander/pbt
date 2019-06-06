@@ -2,9 +2,8 @@ arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 baseurl=https://ftp.pcre.org/pub/pcre
 lib=pcre2-10.33.tar.bz2
-echo "Downloading $baseurl/$lib";
 if [[ ! -f $lib ]]; then
-    echo Downloading $lib
+    echo "Downloading $baseurl/$lib";
     curl -#L -K - <<URL
         url = "$baseurl/$lib"
         output = "$lib"
