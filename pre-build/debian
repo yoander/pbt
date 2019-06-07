@@ -7,4 +7,4 @@ $userdo apt-get install -y make autoconf gcc libxml2-dev libssl-dev openssl libs
 $userdo ln -fs $(find /usr/bin/ -name 'g++-*') /usr/bin/g++
 
 [[ $arch_id == 64 ]] && [[ ! -d /usr/include/sys ]] && \
-	$user_do ln -s /usr/include/x86_64-linux-gnu/sys /usr/include/
+	$userdo ln -s /usr/include/x86_64-linux-gnu/sys /usr/include/
