@@ -193,5 +193,13 @@ if [[ $? ]]; then
         action_file="$postinstall_dir/$action"
         [[ -f $action_file ]] && source $action_file
     done
+    #
+    # Load databases prebuild actions
+    for action in $databases; do
+        action_file="$postinstall_dir/$action"
+        [[ -f $action_file ]] && source $action_file
+        action_file="$postinstall_dir/${os_id}-${action}"
+        [[ -f $action_file ]] && source $action_file
+    done
 fi 
 
