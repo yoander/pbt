@@ -134,6 +134,8 @@ fi
 for action in $databases; do
     action_file="$prebuild_dir/$action"
     [[ -f $action_file ]] && source $action_file
+    action_file="$prebuild_dir/${os_id}-${action}"
+    [[ -f $action_file ]] && source $action_file
 done
 #
 # Compilation params
