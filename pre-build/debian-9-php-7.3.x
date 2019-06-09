@@ -1,3 +1,4 @@
+$uaerdo apt -y install libsodium-dev
 arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 baseurl=https://ftp.pcre.org/pub/pcre
@@ -41,5 +42,7 @@ found=$(find /usr/local/lib -type f -name 'libpcre2*' -print -quit)
             --enable-pcre2test-libreadline \
 	    --enable-jit=auto \
 	    --enable-jit-sealloc \
-            --disable-static                         && make && $userdo make install
+            --disable-static                         && make && \
+	    $userdo make install && \
+	    $userdo ln -s /usr/local/lib/libpcre2-* /usr/lib/	    
 }
