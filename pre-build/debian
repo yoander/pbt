@@ -5,15 +5,15 @@ $userdo apt-get install -y make \
         flex \
         re2c \
         libtool \
+        libreadline-dev \
 	libxml2-dev \
 	libssl-dev \
 	libbz2-dev \
         libzip-dev \
-        libcurl4-openssl-dev 
-        libgd-dev \
+	libcurl4-openssl-dev \
+	libgd-dev \
         libwebp-dev \
 	libicu-dev \
-        libreadline-dev \
         $(apt-cache search -n '^libstdc\+\+\-(\.?[[:digit:]])+\1*\-dev$'|sort -r|head -n 1|awk '{print $1}') \
         $(apt-cache search -n '^g\+\+\-(\.?[[:digit:]])+\1*$'|sort -r|head -n 1|awk '{print $1}')
 
