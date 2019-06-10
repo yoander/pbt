@@ -1,4 +1,4 @@
-$uaerdo apt -y install libsodium-dev
+$userdo apt -y install libsodium-dev
 arch=$(getconf LONG_BIT)
 cd "$root_dir/downloads"
 baseurl=https://ftp.pcre.org/pub/pcre
