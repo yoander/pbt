@@ -29,11 +29,11 @@ fi
 # Uncompress lib
 libdir=${lib%.tar.bz2}
 [[ ! -d "$libdir" ]] && tar xjvf "$lib"
-found=$(find /usr/local/lib -type f -name 'libpcre2*' -print -quit)
+found=$(find /usr/lib -type f -name 'libpcre2*' -print -quit)
 [[ $found == '' ]] && {
     echo Compiling $libdir
     cd "$libdir" 
-    ./configure --prefix=/usr/local \
+    ./configure --prefix=/usr \
             --enable-unicode \
             --enable-pcre2-16 \
             --enable-pcre2-32  \
@@ -43,6 +43,7 @@ found=$(find /usr/local/lib -type f -name 'libpcre2*' -print -quit)
 	    --enable-jit=auto \
 	    --enable-jit-sealloc \
             --disable-static                         && make && \
-	    $userdo make install && \
-	    $userdo ln -s /usr/local/lib/libpcre2-* /usr/lib/	    
+	    $userdo make install
+	    #&& \
+	    #$userdo ln -s /usr/local/lib/libpcre2-* /usr/lib/	    
 }
