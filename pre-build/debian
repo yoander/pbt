@@ -12,6 +12,7 @@ $userdo apt-get install -y make \
         libzip-dev \
 	libcurl4-openssl-dev \
 	libgd-dev \
+	libxpm-dev \
         libwebp-dev \
 	libicu-dev \
         $(apt-cache search -n '^libstdc\+\+\-(\.?[[:digit:]])+\1*\-dev$'|sort -r|head -n 1|awk '{print $1}') \
