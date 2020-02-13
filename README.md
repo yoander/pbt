@@ -1,3 +1,5 @@
+## The development of this project continue at: https://notabug.org/sedlav/butterfly-builder
+
 ## Introduction
 
 **pbt** is a tool written in BASH that allows to compile PHP from the source code, pbt is the evolution of the php-build.sh script allowing greater flexibility and customization in the PHP compilation / installation process.
